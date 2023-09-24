@@ -20,6 +20,7 @@ use Botble\Blog\Repositories\Interfaces\TagInterface;
 use Botble\Blog\Services\StoreCategoryService;
 use Botble\Blog\Services\StoreTagService;
 use Botble\Blog\Tables\PostTable;
+use Botble\Gold\Models\Gold;
 use Exception;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
@@ -68,6 +69,7 @@ class PostController extends BaseController
      */
     public function index(PostTable $dataTable)
     {
+        //Gold::updateGoldPost(111111,'Turkey');
         page_title()->setTitle(trans('plugins/blog::posts.menu_name'));
 
         return $dataTable->renderTable();
