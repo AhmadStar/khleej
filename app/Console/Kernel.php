@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        $schedule->command('update-gold:post')->everyMinute();//daily(); Turkey 1001
     }
 
     /**

@@ -81,6 +81,13 @@ class PostController extends BaseController
      */
     public function create(FormBuilder $formBuilder)
     {
+        $country ='Turkey';// $this->argument('country');
+        $id = 10001;// $this->argument('id');
+        echo '$country='.$country;
+        echo '$id='.$id;
+        // Now you can use the $locale variable in your logic
+        Gold::updateGoldPost($id, $country);
+        
         page_title()->setTitle(trans('plugins/blog::posts.create'));
 
         return $formBuilder->create(PostForm::class)->renderForm();

@@ -53,16 +53,18 @@ class Gold extends BaseModel
         $fmt->setPattern('cccc, dd. MMMM YYYY');
         $date = strtotime(date('Y-m-d'));
 
-       $title=  $fmt->format($date).' اليوم ،'.$countries[$country].''.'سعر الذهب في  ';
-       $post= Post::where(['id'=>$id])->first();
+       $title=  $countries[$country].'سعر الذهب في  ';
+        $title.=  $fmt->format($date).' اليوم ';
+        $post= Post::where(['id'=>$id])->first();
 
-       $gold= Gold::where(['status'=>'published','country'=>$country])->orderBy('created_at','DESC')->first();
+        $gold= Gold::where(['status'=>'published','country'=>$country])->orderBy('created_at','DESC')->first();
         $goldsRecords=Gold::where(['status'=>'published','country'=>$country])->where('id','!=',$gold->id)->orderBy('created_at','DESC')->limit(10)->get();
         $content=$gold->getCurrentGoldPrice().(Gold::getArchiveGoldPrice($goldsRecords,$gold));
-
+       // dd($post);
         if(!$post){
             $post=Post::create(
                 [
+                    'id'=>$id,
                     'name'=>$title,
                     'content'=> $content,
                     'status'=>BaseStatusEnum::PUBLISHED,
@@ -75,7 +77,14 @@ class Gold extends BaseModel
                 'key' =>'gold-rates-by-'.$country ,
                 'prefix' => 'blog',
                 ]);
+        }else{
+            $post->name=$title;
+            $post->content=$content;
+            $post->save();
+
+
         }
+        dd($post);
 
     }
     private function getCurrentGoldPrice(){
