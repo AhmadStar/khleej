@@ -54,7 +54,7 @@ class ServicesServiceProvider extends ServiceProvider
 
         if (function_exists('shortcode')) {
             add_shortcode(
-                'services',
+                'service',
                 '',
                 '',
                 [$this, 'render']
@@ -71,7 +71,7 @@ class ServicesServiceProvider extends ServiceProvider
     public function render($shortcode)
     {
 
-        return view(apply_filters(SIMPLE_SLIDER_VIEW_TEMPLATE, 'plugins/services::partials.age'), [
+        return view('plugins/services::partials.age', [
             'sliders' => '',
             'shortcode' => '',
             'slider' => '',
