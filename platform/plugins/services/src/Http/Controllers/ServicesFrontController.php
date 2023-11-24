@@ -39,8 +39,8 @@ class ServicesFrontController extends BaseController
     public function view($slug)
     {
         page_title()->setTitle(trans('plugins/services::services.name'));
-//        \Assets::addScriptsDirectly('/themes/ripple/js/vue.js');
-//        \Assets::addScriptsDirectly('/themes/ripple/js/vue-search.js');
+        \Assets::addScriptsDirectly('/themes/martfury/js/vue.js');
+        \Assets::addScriptsDirectly('/themes/martfury/js/services-vue.js');
 
 //        dd($slug);
 
