@@ -10,7 +10,6 @@ use Theme;
 
 class HookServiceProvider extends ServiceProvider
 {
-
     public function boot()
     {
         if (function_exists('shortcode')) {
