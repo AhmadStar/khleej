@@ -41,6 +41,8 @@ class ServicesFrontController extends BaseController
         page_title()->setTitle(trans('plugins/services::services.name'));
 
         dd($slug);
+
+        
         return view('plugins/services::search-results', ['results' => '', 'model' => '']);
 
         //return $table->renderTable();
