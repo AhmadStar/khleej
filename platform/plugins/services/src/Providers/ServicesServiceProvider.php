@@ -74,7 +74,7 @@ class ServicesServiceProvider extends ServiceProvider
 
         return view('plugins/services::partials.age', [
             'sliders' => '',
-            'shortcode' => '',
+            'shortcode' => $shortcode,
             'slider' => '',
         ]);
     }

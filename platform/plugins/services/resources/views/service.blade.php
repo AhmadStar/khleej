@@ -6,4 +6,5 @@
  * Time: 9:58 PM
  */?>
 test
-{!! do_shortcode('[internal-link post="10041"][/internal-link]') !!}
+{{-- {!! do_shortcode('[internal-link post="1000"][/internal-link]') !!} --}}
+{!! do_shortcode('[age][/age]') !!}
