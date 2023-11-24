@@ -31,6 +31,7 @@ class ServicesServiceProvider extends ServiceProvider
         $this->setNamespace('plugins/services')
             ->loadAndPublishConfigurations(['permissions'])
             ->loadMigrations()
+            ->loadAndPublishViews()
             ->loadAndPublishTranslations()
             ->loadRoutes(['web']);
 

@@ -39,11 +39,13 @@ class ServicesFrontController extends BaseController
     public function view($slug)
     {
         page_title()->setTitle(trans('plugins/services::services.name'));
+//        \Assets::addScriptsDirectly('/themes/ripple/js/vue.js');
+//        \Assets::addScriptsDirectly('/themes/ripple/js/vue-search.js');
 
-        dd($slug);
+//        dd($slug);
 
-        
-        return view('plugins/services::search-results', ['results' => '', 'model' => '']);
+
+        return view('plugins/services::service', ['results' => '', 'model' => '']);
 
         //return $table->renderTable();
     }
