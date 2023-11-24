@@ -12,7 +12,7 @@ use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
 
-class UpdateGold extends Command
+class SyncGold extends Command
 {
     /**
      * The name and signature of the console command.
@@ -20,7 +20,7 @@ class UpdateGold extends Command
      * @var string
      */
 
-    protected $signature = 'update-gold:post';// {country} {id}';
+    protected $signature = 'sync-gold';// {country} {id}';
     protected $postRepository;
 
 
@@ -30,7 +30,7 @@ class UpdateGold extends Command
      *
      * @var string
      */
-    protected $description = 'update post tr';
+    protected $description = 'sync-gold';
 
     /**
      * Create a new command instance.
@@ -53,14 +53,13 @@ class UpdateGold extends Command
     public function handle()
     {
 
-        $country ='Turkey';// $this->argument('country');
-        $id = 10001;// $this->argument('id');
 
-        // Now you can use the $locale variable in your logic
-        Gold::updateGoldPost($id, $country);
-        Gold::updateGoldPost(10000, 'Saudi Arabia');
-        Gold::updateGoldPost(9999, 'Emarat');
-        Gold::updateGoldPost(9998, 'Egypt');
+        Gold::GoldPriceSync();
+        Gold::GoldPriceSync('Saudi Arabia','https://www.150currency.com/ar/gold-rates-by-SAR.htm');
+        Gold::GoldPriceSync('Emarat','https://www.150currency.com/ar/gold-rates-by-AED.htm');
+        Gold::GoldPriceSync('Egypt','https://www.150currency.com/ar/gold-rates-by-EGP.htm');
+        //Gold::GoldPriceSync(); 
+
     }
 
 
