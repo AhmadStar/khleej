@@ -106,6 +106,8 @@ return [
                 $theme->composer([
                     'page',
                     'post',
+                    'services',
+                    'service',
                     'ecommerce.product',
                     'ecommerce.products',
                     'ecommerce.product-category',

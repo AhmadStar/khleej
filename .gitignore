@@ -46,3 +46,6 @@ resources/docs
 /log
 
 storage/framework/laravel-excel/
+
+history
+.history

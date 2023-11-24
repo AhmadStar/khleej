@@ -11,6 +11,7 @@ use Botble\Base\Supports\Helper;
 use Event;
 use Botble\Base\Traits\LoadAndPublishDataTrait;
 use Illuminate\Routing\Events\RouteMatched;
+use Botble\Shortcode\Compilers\Shortcode;
 
 class ServicesServiceProvider extends ServiceProvider
 {
@@ -49,5 +50,31 @@ class ServicesServiceProvider extends ServiceProvider
                 'permissions' => ['services.index'],
             ]);
         });
+
+
+        if (function_exists('shortcode')) {
+            add_shortcode(
+                'services',
+                '',
+                '',
+                [$this, 'render']
+            );
+
+            shortcode()->setAdminConfig('age', function ($attributes) {
+                return view('plugins/services::partials.age-admin-config', compact('attributes'))
+                    ->render();
+            });
+        }
+
+    }
+
+    public function render($shortcode)
+    {
+
+        return view(apply_filters(SIMPLE_SLIDER_VIEW_TEMPLATE, 'plugins/services::partials.age'), [
+            'sliders' => '',
+            'shortcode' => '',
+            'slider' => '',
+        ]);
     }
 }
