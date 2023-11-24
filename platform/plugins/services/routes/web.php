@@ -1,6 +1,8 @@
 <?php
 
-Route::group(['namespace' => 'Botble\Services\Http\Controllers', 'middleware' => 'web'], function () {
+Route::group(['namespace' => 'Botble\Services\Http\Controllers', 'middleware' => ['web', 'core']], function () {
+
+    Route::get('/service/{slug}','ServicesFrontController@view');
 
     Route::group(['prefix' => BaseHelper::getAdminPrefix(), 'middleware' => 'auth'], function () {
 

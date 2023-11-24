@@ -25,6 +25,7 @@ class Services extends BaseModel
         'name',
         'image',
         'icon',
+        'slug',
         'color',
         'content',
         'summary',
