@@ -16,7 +16,13 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command('update-gold:post')->everyMinute();//daily(); Turkey 1001
+        $schedule->command('update-gold:post')->everyThreeHours()
+        ->timezone('Asia/Riyadh')
+        ->between('9:00', '18:00');//daily(); Turkey 1001
+        $schedule->command('sync-gold')->everyThreeHours()
+            ->timezone('Asia/Riyadh')
+            ->between('9:00', '18:00');//daily(); Turkey 1001
+
     }
 
     /**
