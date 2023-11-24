@@ -55,9 +55,9 @@ class ServicesServiceProvider extends ServiceProvider
 
         if (function_exists('shortcode')) {
             add_shortcode(
-                'service',
-                '',
-                '',
+                'age',
+                'dsa',
+                'dsa',
                 [$this, 'render']
             );
 
