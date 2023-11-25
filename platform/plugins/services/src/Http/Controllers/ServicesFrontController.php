@@ -8,6 +8,7 @@ use Botble\Services\Repositories\Interfaces\ServicesInterface;
 use Botble\Base\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
 use Exception;
+use Theme;
 use Botble\Services\Tables\ServicesTable;
 use Botble\Base\Events\CreatedContentEvent;
 use Botble\Base\Events\DeletedContentEvent;
@@ -39,13 +40,19 @@ class ServicesFrontController extends BaseController
     public function view($slug)
     {
         page_title()->setTitle(trans('plugins/services::services.name'));
-        \Assets::addScriptsDirectly('/themes/martfury/js/vue.js');
-        \Assets::addScriptsDirectly('/themes/martfury/js/services-vue.js');
+        Theme::asset()
+            ->usePath(false)
+            ->add('vue-js', asset('/themes/martfury/js/vue.js'), [], [], '1.0.0')
+            ->add('vue-js', asset('/themes/martfury/js/services-vue.js'), [], [], '1.0.0');
 
-//        dd($slug);
+        $service = app(ServicesInterface::class)->getModel()
+            ->where('slug',$slug)
+            ->first();
 
-
-        return view('plugins/services::service', ['results' => '', 'model' => '']);
+        $services = app(ServicesInterface::class)->getModel()
+            ->get();
+        return \Theme::layout('new-layout')->scope('service', ['service' => $service,'services' => $services])->render();
+        //return view('plugins/services::service', ['results' => '', 'model' => '']);
 
         //return $table->renderTable();
     }

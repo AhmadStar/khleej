@@ -27,6 +27,13 @@ class ServicesForm extends FormAbstract
                     'data-counter' => 120,
                 ],
             ])
+            ->add('slug', 'text', [
+                'label'      => trans('Slug'),
+                'label_attr' => ['class' => 'control-label required'],
+                'attr'       => [
+                    'data-counter' => 120,
+                ],
+            ])
             ->add('icon', 'mediaImage', [
                 'label' => __('Icon'),
                 'label_attr' => ['class' => 'control-label'],

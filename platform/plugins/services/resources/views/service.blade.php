@@ -9,4 +9,4 @@
 @extends(Theme::getThemeNamespace() . '::views.ecommerce.customers.services-master')
 
 {{-- {!! do_shortcode('[internal-link post="1000"][/internal-link]') !!} --}}
-{!! do_shortcode('[age][/age]') !!}
+

@@ -47,7 +47,7 @@ app()->booted(function () {
             return Theme::partial('short-codes.recent-posts', ['title' => $shortcode->title, 'posts' => $posts]);
         });
 
-        shortcode()->setAdminConfig('recent-posts', function (array $attributes, string|null $content) {
+        shortcode()->setAdminConfig('recent-posts', function (array $attributes, string $content) {
             return Theme::partial('short-codes.recent-posts-admin-config', compact('attributes', 'content'));
         });
         
