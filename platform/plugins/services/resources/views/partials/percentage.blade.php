@@ -1,11 +1,11 @@
-<h4>حاسبة العمر والزمن</h4>
+<h2>احسب النسبة المئوية</h2>
 
-<label for="birthdate">أدخل تاريخ ميلادك الميلادي:</label>
-<input type="date" id="gregorianBirthdate">
+<label for="percentage">أدخل النسبة المئوية %</label>
+<input type="number" id="percentage">
 
-{{--<label for="hijriBirthdate">أدخل تاريخ ميلادك الهجري:</label>--}}
-{{--<input type="date" id="hijriBirthdate">--}}
+<label for="percentage">أدخل العدد </label>
+<input type="number" id="number">
 
-<button @click="calculateAgeAndTime()">حساب العمر والزمن</button>
+<button @click="calculatePercentage()">حساب النسبة المئوية</button>
 
 <p id="result"></p>

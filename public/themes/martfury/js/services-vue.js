@@ -70,6 +70,26 @@ var services = new Vue({
                 document.getElementById("result").innerHTML = resultText;
             },
 
+            calculatePercentage: function () {
+
+                var percentage = document.getElementById("percentage").value;
+                var number = document.getElementById("number").value;
+
+                // Ensure that the inputs are valid numbers
+                if (isNaN(number) || isNaN(percentage)) {
+                    return "Please enter valid numbers.";
+                }
+
+                // Calculate the percentage
+                var result = (number * percentage) / 100;
+
+
+                var resultText = "النسبة : " + percentage + " " +
+                    "<br> العدد : " + number + " " +
+                    "<br> النتيجة : " + result + " ";
+                document.getElementById("result").innerHTML = resultText;
+            },
+
 
         },
     })
