@@ -1,3 +1,5 @@
+@if($post)
+
 <div class="border-related">
     <p class="related-artciles">{{ __("مقالة ذات صلة")}}</p>
     <div class="row">
@@ -30,3 +32,5 @@
         font-weight: bold;
     }
 </style>
+
+@endif

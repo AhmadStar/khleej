@@ -36,6 +36,22 @@
         @endphp
 
         {!! Theme::header() !!}
+        <!-- BEGIN PLERDY CODE -->
+<script type="text/javascript" defer data-plerdy_code='1'>
+    var _protocol="https:"==document.location.protocol?" https://":" http://";
+    _site_hash_code = "48cf983624f5e008b6fccd8624257255",_suid=42474, plerdyScript=document.createElement("script");
+    plerdyScript.setAttribute("defer",""),plerdyScript.dataset.plerdymainscript="plerdymainscript",
+    plerdyScript.src="https://a.plerdy.com/public/js/click/main.js?v="+Math.random();
+    var plerdymainscript=document.querySelector("[data-plerdymainscript='plerdymainscript']");
+    plerdymainscript&&plerdymainscript.parentNode.removeChild(plerdymainscript);
+    try{document.head.appendChild(plerdyScript)}catch(t){console.log(t,"unable add script tag")}
+</script>
+<!-- END PLERDY CODE -->
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5599041681644909"
+     crossorigin="anonymous"></script>
+     
     </head>
     <body @if (Theme::get('pageId')) id="{{ Theme::get('pageId') }}" @endif @if (BaseHelper::siteLanguageDirection() == 'rtl') dir="rtl" @endif>
         {!! apply_filters(THEME_FRONT_BODY, null) !!}

@@ -30,7 +30,7 @@
     </div>
     <div class="col-md-8">
 
-       <h1> {{$service->name}} <h1>
+       <h1> {{$service->name}} </h1>
         {!! $service->content !!}
 
     </div>
