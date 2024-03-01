@@ -456,9 +456,9 @@ app()->booted(function () {
             return Theme::partial('short-codes.featured-posts', compact('posts'));
         });
 
-        shortcode()->setAdminConfig('featured-posts', function (array $attributes, string|null $content) {
-            return Theme::partial('short-codes.featured-posts-admin-config', compact('attributes', 'content'));
-        });
+//        shortcode()->setAdminConfig('featured-posts', function (array $attributes, string|null $content) {
+//            return Theme::partial('short-codes.featured-posts-admin-config', compact('attributes', 'content'));
+//        });
 
        add_shortcode(
            'col-3-category-posts',

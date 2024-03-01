@@ -4,6 +4,9 @@
 // You can delete this route group if you don't need to add your custom routes.
 Route::group(['namespace' => 'Theme\Martfury\Http\Controllers', 'middleware' => ['web', 'core']], function () {
     Route::group(apply_filters(BASE_FILTER_GROUP_PUBLIC_ROUTE, []), function () {
+        Route::get('infobip/test', 'MartfuryController@infobipTest')
+            ->name('public.infobip');
+
         Route::get('ajax/products', 'MartfuryController@ajaxGetProducts')
             ->name('public.ajax.products');
 
