@@ -17,6 +17,10 @@ use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Infobip\InfobipClient;
+use Infobip\Model\SmsAdvancedTextualRequest;
+use Infobip\Model\SmsDestination;
+use Infobip\Model\SmsTextualMessage;
 use Theme;
 use Theme\Martfury\Http\Requests\SendDownloadAppLinksRequest;
 use Theme\Martfury\Http\Resources\BrandResource;
@@ -24,6 +28,10 @@ use Theme\Martfury\Http\Resources\PostResource;
 use Theme\Martfury\Http\Resources\ProductCategoryResource;
 use Theme\Martfury\Http\Resources\ReviewResource;
 use Throwable;
+use GuzzleHttp\Client as GuzzleHttpClient;
+use Infobip\Configuration as InfobipConfiguration;
+use Infobip\Api\SendSMS as SendSMSApi;
+
 
 class MartfuryController extends PublicController
 {
@@ -32,6 +40,49 @@ class MartfuryController extends PublicController
      * @param BaseHttpResponse $response
      * @return BaseHttpResponse
      */
+
+    public function infobipTest(Request $request, BaseHttpResponse $response)
+    {
+        $API_KEY_PREFIX = 'App';
+        $API_KEY = '4a48b1440c69f55946ee4c62fb541bd3-0c1f073f-441e-4106-bca5-3b8b1ab98bcf';
+        $URL_BASE_PATH = 'https://alkhaleej.services/';
+        $configuration = (new InfobipConfiguration())
+            ->setHost($URL_BASE_PATH)
+            ->setApiKeyPrefix('Authorization', $API_KEY_PREFIX)
+            ->setApiKey('Authorization', $API_KEY);
+        $client = new GuzzleHttpClient();
+        $sendSmsApi = new SendSMSApi($client, $configuration);
+        $destination = (new SmsDestination())->setTo('+905524453317');
+        $message = (new SmsTextualMessage())
+            ->setFrom('InfoSMS')
+            ->setText('This is a dummy SMS message sent using infobip-api-php-client')
+            ->setDestinations([$destination]);
+        $request = (new SmsAdvancedTextualRequest())
+            ->setMessages([$message]);
+
+        dd($request);
+
+//        $infobip = new Infobip(   '4a48b1440c69f55946ee4c62fb541bd3-0c1f073f-441e-4106-bca5-3b8b1ab98bcf');
+//
+//// Create a message request
+//        $message = new TextSMS();
+//        $message->setFrom('+96170065073');
+//        $message->setTo('+905524453317');
+//        $message->setText('Hello, this is a test message.');
+//
+//// Send the message
+//        $response = $infobip->textSMS()->sendSingleText($message);
+//
+//// Check if the message was sent successfully
+//        if ($response->getStatus()->getGroupName() === 'DELIVERED') {
+//            echo 'Message sent successfully.';
+//        } else {
+//            echo 'Failed to send message: ' . $response->getStatus()->getDescription();
+//        }
+
+        dd('infobipTest');
+    }
+
     public function ajaxGetProducts(Request $request, BaseHttpResponse $response)
     {
         if (!$request->ajax() || !$request->wantsJson()) {
