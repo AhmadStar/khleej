@@ -13,7 +13,6 @@
         <ul class="list">
             @foreach($services as $serviceMenuItem)
             <li class="list-item">
-
                 <div>
                     <a href="/service/{{$serviceMenuItem->slug}}"> <img src="{{RvMedia::getImageUrl($serviceMenuItem->icon, '', false, RvMedia::getDefaultImage())}}" class="list-item-image"> </a>
                 </div>
@@ -21,9 +20,6 @@
                     <h4><a href="/service/{{$serviceMenuItem->slug}}">{{$serviceMenuItem->name}} </a></h4>
                     <p>{{$serviceMenuItem->summary}}</p>
                 </div>
-
-
-
             @endforeach
         </ul>
 
@@ -31,6 +27,7 @@
     <div class="col-md-8">
 
        <h1> {{$service->name}} </h1>
+
         {!! $service->content !!}
 
     </div>

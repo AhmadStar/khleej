@@ -84,6 +84,20 @@ class PostForm extends FormAbstract
                     'with-short-code' => true,
                 ],
             ])
+             ->add('rowOpen1', 'html', [
+                'html' => '<script>CKEDITOR.instances["editor1"].setData("test 123")
+                document.addEventListener("DOMContentLoaded", function() {
+    setTimeout(function() {
+        // Get the element you want to update
+        var field = document.querySelector(".ck-editor__editable"); // [0]
+alert(field);
+console.log("tt==>",field)
+        // Update the value
+        field.innerHTML  = "New Value"; // 
+
+    }, 10000); // 2000 milliseconds = 2 seconds
+});</script>',
+            ])
             ->add('status', 'customSelect', [
                 'label' => trans('core/base::tables.status'),
                 'label_attr' => ['class' => 'control-label required'],

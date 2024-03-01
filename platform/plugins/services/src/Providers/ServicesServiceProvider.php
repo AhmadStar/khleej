@@ -55,7 +55,6 @@ class ServicesServiceProvider extends ServiceProvider
 
         if (function_exists('shortcode')) {
 
-
             // Age
             add_shortcode(
                 'age',
@@ -68,31 +67,34 @@ class ServicesServiceProvider extends ServiceProvider
                     ->render();
             });
 
-            // percentage-calculator
+            // Percentage
             add_shortcode(
-                'percentage-calculator',
-                'percentage-calculator',
-                'percentage-calculator',
-                [$this, 'percentageCalculator']
+                'percentage',
+                'percentage',
+                'percentage',
+                [$this, 'percentage']
             );
-            shortcode()->setAdminConfig('percentage-calculator', function ($attributes) {
-                return view('plugins/services::partials.percentage-calculator-admin-config', compact('attributes'))
+            shortcode()->setAdminConfig('percentage', function ($attributes) {
+                return view('plugins/services::partials.percentage-admin-config', compact('attributes'))
                     ->render();
             });
+
+
         }
 
     }
 
     public function render($shortcode)
     {
+
         return view('plugins/services::partials.age', [
             'shortcode' => $shortcode,
         ]);
     }
 
-    public function percentageCalculator($shortcode)
+    public function percentage($shortcode)
     {
-        return view('plugins/services::partials.percentage-calculator', [
+        return view('plugins/services::partials.percentage', [
             'shortcode' => $shortcode,
         ]);
     }
