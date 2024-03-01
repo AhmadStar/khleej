@@ -6,6 +6,8 @@ use Botble\Base\Traits\EnumCastable;
 use Botble\Base\Enums\BaseStatusEnum;
 use Botble\Base\Models\BaseModel;
 use Botble\Projects\Models\Projects;
+use Illuminate\Support\Str;
+use Botble\Slug\Models\Slug;
 
 class Services extends BaseModel
 {
@@ -51,7 +53,7 @@ class Services extends BaseModel
     }
     public static function getAllLangServices(){
         return Services::select('*')
-            
+
             ->where([
                 'services.status' => 'published'])->orderBy('services.created_at', 'DESC')->get();
 
@@ -67,5 +69,24 @@ class Services extends BaseModel
         //return $this->belongsToMany(Services::class, 'foreign_id', 'id')->orderBy('rank');
     }
 
-    
+
+    public function createSlug()
+    {
+        $slug = Str::slug($this->name, '-',false);
+        $index = 1;
+        $baseSlug = $slug;
+        while (Services::where('slug', $slug)->where('id', '!=', $this->id)->count() > 0) {
+            $slug = $baseSlug . '-' . $index++;
+        }
+
+        if (empty($slug)) {
+            $slug = time();
+        }
+
+        $this->slug=$slug;
+        $this->save();
+        return $slug;
+    }
+
+
 }

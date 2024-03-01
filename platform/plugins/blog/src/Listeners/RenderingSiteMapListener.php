@@ -6,6 +6,7 @@ use Botble\Blog\Repositories\Interfaces\CategoryInterface;
 use Botble\Blog\Repositories\Interfaces\PostInterface;
 use Botble\Blog\Repositories\Interfaces\TagInterface;
 use SiteMapManager;
+use Botble\Services\Repositories\Interfaces\ServicesInterface;
 
 class RenderingSiteMapListener
 {
@@ -24,6 +25,9 @@ class RenderingSiteMapListener
      */
     protected $tagRepository;
 
+    protected $servicesRepository;
+
+
     /**
      * RenderingSiteMapListener constructor.
      * @param PostInterface $postRepository
@@ -33,11 +37,13 @@ class RenderingSiteMapListener
     public function __construct(
         PostInterface $postRepository,
         CategoryInterface $categoryRepository,
-        TagInterface $tagRepository
+        TagInterface $tagRepository,
+        ServicesInterface $servicesRepository
     ) {
         $this->postRepository = $postRepository;
         $this->categoryRepository = $categoryRepository;
         $this->tagRepository = $tagRepository;
+        $this->servicesRepository = $servicesRepository;
     }
 
     /**
@@ -63,6 +69,12 @@ class RenderingSiteMapListener
 
         foreach ($tags as $tag) {
             SiteMapManager::add($tag->url, $tag->updated_at, '0.3', 'weekly');
+        }
+
+        $services = app(ServicesInterface::class)->getModel()->get();
+
+        foreach ($services as $service) {
+            SiteMapManager::add('https://alkhaleej.services/service/'.$service->slug, $service->updated_at, '0.8');
         }
     }
 }

@@ -26,15 +26,18 @@ class ServicesForm extends FormAbstract
                     'placeholder'  => trans('core/base::forms.name_placeholder'),
                     'data-counter' => 120,
                 ],
-            ])
-            ->add('slug', 'text', [
-                'label'      => trans('Slug'),
-                'label_attr' => ['class' => 'control-label required'],
-                'attr'       => [
-                    'data-counter' => 120,
-                ],
-            ])
-            ->add('icon', 'mediaImage', [
+            ]);
+            if($this->getModel()->id){
+                $this->addMetaBoxes([
+                    'with_related' => [
+                        'title'    => 'Click to open editor',
+                        'content'  => '<a href="https://alkhaleej.services/service/"'.$this->getModel()->id.'>Show Slug</a>',
+                        'wrap'     => true,
+                        'priority' => 9999,
+                    ],
+                ]);
+            }
+            $this->add('icon', 'mediaImage', [
                 'label' => __('Icon'),
                 'label_attr' => ['class' => 'control-label'],
             ])

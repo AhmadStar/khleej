@@ -63,6 +63,8 @@ class ServicesController extends BaseController
     {
         $services = $this->servicesRepository->createOrUpdate($request->input());
 
+        $services->createSlug();
+
         event(new CreatedContentEvent(SERVICES_MODULE_SCREEN_NAME, $request, $services));
 
         return $response
@@ -101,6 +103,7 @@ class ServicesController extends BaseController
         $services->fill($request->input());
 
         $this->servicesRepository->createOrUpdate($services);
+        $services->createSlug();
 
         event(new UpdatedContentEvent(SERVICES_MODULE_SCREEN_NAME, $request, $services));
 

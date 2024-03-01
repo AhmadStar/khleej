@@ -5,9 +5,6 @@
  * Date: 11/24/2023
  * Time: 10:42 PM
  */ ?>
-
-
-
 <div class="row service-page">
     <div class="col-md-4">
         <ul class="list">
